@@ -1,0 +1,762 @@
+{
+  "version": "2.0",
+  "metadata": {
+    "apiVersion": "2020-07-20",
+    "endpointPrefix": "sso",
+    "jsonVersion": "1.1",
+    "protocol": "json",
+    "serviceFullName": "AWS IAM Identity Center SAML Management",
+    "serviceAbbreviation": "IDC SAML",
+    "serviceId": "IDC SAML",
+    "signatureVersion": "v4",
+    "signingName": "sso",
+    "targetPrefix": "SWBService",
+    "uid": "idc-saml-2020-07-20"
+  },
+  "operations": {
+    "CreateApplicationInstance": {
+      "name": "CreateApplicationInstance",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "CreateApplicationInstanceRequest"
+      },
+      "output": {
+        "shape": "CreateApplicationInstanceResponse"
+      },
+      "documentation": "<p>Creates a SAML application instance using the specified template.</p>"
+    },
+    "GetApplicationInstance": {
+      "name": "GetApplicationInstance",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "GetApplicationInstanceRequest"
+      },
+      "output": {
+        "shape": "GetApplicationInstanceResponse"
+      },
+      "documentation": "<p>Retrieves full application instance details including SAML metadata URL.</p>"
+    },
+    "UpdateApplicationInstanceDisplayData": {
+      "name": "UpdateApplicationInstanceDisplayData",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UpdateApplicationInstanceDisplayDataRequest"
+      },
+      "documentation": "<p>Sets the display name and description for an application instance.</p>"
+    },
+    "UpdateApplicationInstanceServiceProviderConfiguration": {
+      "name": "UpdateApplicationInstanceServiceProviderConfiguration",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UpdateApplicationInstanceServiceProviderConfigurationRequest"
+      },
+      "documentation": "<p>Configures SAML service provider settings (ACS URL, audience).</p>"
+    },
+    "UpdateApplicationInstanceResponseConfiguration": {
+      "name": "UpdateApplicationInstanceResponseConfiguration",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UpdateApplicationInstanceResponseConfigurationRequest"
+      },
+      "documentation": "<p>Configures SAML response attribute values and session TTL.</p>"
+    },
+    "UpdateApplicationInstanceResponseSchemaConfiguration": {
+      "name": "UpdateApplicationInstanceResponseSchemaConfiguration",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UpdateApplicationInstanceResponseSchemaConfigurationRequest"
+      },
+      "documentation": "<p>Configures SAML response attribute schema (format and inclusion settings).</p>"
+    },
+    "UpdateApplicationInstanceStatus": {
+      "name": "UpdateApplicationInstanceStatus",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "UpdateApplicationInstanceStatusRequest"
+      },
+      "documentation": "<p>Enables or disables an application instance.</p>"
+    },
+    "DeleteApplicationInstance": {
+      "name": "DeleteApplicationInstance",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "DeleteApplicationInstanceRequest"
+      },
+      "documentation": "<p>Deletes an application instance. All assignments and profiles must be deleted first.</p>"
+    },
+    "ListApplicationInstances": {
+      "name": "ListApplicationInstances",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListApplicationInstancesRequest"
+      },
+      "output": {
+        "shape": "ListApplicationInstancesResponse"
+      },
+      "documentation": "<p>Lists all application instances.</p>"
+    },
+    "ListApplicationTemplates": {
+      "name": "ListApplicationTemplates",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListApplicationTemplatesRequest"
+      },
+      "output": {
+        "shape": "ListApplicationTemplatesResponse"
+      },
+      "documentation": "<p>Lists available application templates.</p>"
+    },
+    "ListApplicationInstanceCertificates": {
+      "name": "ListApplicationInstanceCertificates",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListApplicationInstanceCertificatesRequest"
+      },
+      "output": {
+        "shape": "ListApplicationInstanceCertificatesResponse"
+      },
+      "documentation": "<p>Lists SAML certificates for an application instance.</p>"
+    },
+    "ListProfiles": {
+      "name": "ListProfiles",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListProfilesRequest"
+      },
+      "output": {
+        "shape": "ListProfilesResponse"
+      },
+      "documentation": "<p>Lists profiles associated with an application instance.</p>"
+    },
+    "DeleteProfile": {
+      "name": "DeleteProfile",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "DeleteProfileRequest"
+      },
+      "documentation": "<p>Deletes a profile from an application instance.</p>"
+    },
+    "DescribeRegisteredRegions": {
+      "name": "DescribeRegisteredRegions",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "DescribeRegisteredRegionsRequest"
+      },
+      "output": {
+        "shape": "DescribeRegisteredRegionsResponse"
+      },
+      "documentation": "<p>Lists registered regions for IAM Identity Center.</p>"
+    },
+    "ListDirectoryAssociations": {
+      "name": "ListDirectoryAssociations",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "ListDirectoryAssociationsRequest"
+      },
+      "output": {
+        "shape": "ListDirectoryAssociationsResponse"
+      },
+      "documentation": "<p>Lists directory associations.</p>"
+    }
+  },
+  "shapes": {
+    "InstanceId": {
+      "type": "string",
+      "pattern": "ins-[a-f0-9]+"
+    },
+    "TemplateId": {
+      "type": "string"
+    },
+    "ProfileId": {
+      "type": "string",
+      "pattern": "p-[a-f0-9]+"
+    },
+    "StatusType": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "String": {
+      "type": "string"
+    },
+    "Boolean": {
+      "type": "boolean"
+    },
+    "StringList": {
+      "type": "list",
+      "member": {
+        "shape": "String"
+      }
+    },
+    "CreateApplicationInstanceRequest": {
+      "type": "structure",
+      "required": [
+        "templateId",
+        "name"
+      ],
+      "members": {
+        "templateId": {
+          "shape": "TemplateId",
+          "documentation": "<p>The template ID. Use tpl-50e590700beb5208 for Custom SAML 2.0 applications.</p>"
+        },
+        "name": {
+          "shape": "String",
+          "documentation": "<p>An internal name for the application (typically a UUID).</p>"
+        }
+      }
+    },
+    "CreateApplicationInstanceResponse": {
+      "type": "structure",
+      "members": {
+        "applicationInstance": {
+          "shape": "ApplicationInstance"
+        }
+      }
+    },
+    "GetApplicationInstanceRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        }
+      }
+    },
+    "GetApplicationInstanceResponse": {
+      "type": "structure",
+      "members": {
+        "applicationInstance": {
+          "shape": "ApplicationInstance"
+        }
+      }
+    },
+    "ApplicationInstance": {
+      "type": "structure",
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        },
+        "display": {
+          "shape": "DisplayData"
+        },
+        "identityProviderConfig": {
+          "shape": "IdentityProviderConfig"
+        },
+        "serviceProviderConfig": {
+          "shape": "ServiceProviderConfig"
+        },
+        "status": {
+          "shape": "StatusType"
+        },
+        "template": {
+          "shape": "TemplateInfo"
+        }
+      }
+    },
+    "DisplayData": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "shape": "String"
+        },
+        "description": {
+          "shape": "String"
+        }
+      }
+    },
+    "IdentityProviderConfig": {
+      "type": "structure",
+      "members": {
+        "metadataUrl": {
+          "shape": "String",
+          "documentation": "<p>The SAML metadata URL for this application.</p>"
+        },
+        "issuerUrl": {
+          "shape": "String"
+        },
+        "remoteLoginUrl": {
+          "shape": "String"
+        },
+        "remoteLogoutUrl": {
+          "shape": "String"
+        }
+      }
+    },
+    "ServiceProviderConfig": {
+      "type": "structure",
+      "members": {
+        "audience": {
+          "shape": "String",
+          "documentation": "<p>The SAML audience URI.</p>"
+        },
+        "consumers": {
+          "shape": "ConsumerList"
+        },
+        "requireRequestSignature": {
+          "shape": "Boolean"
+        }
+      }
+    },
+    "Consumer": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "shape": "String",
+          "documentation": "<p>The ACS URL.</p>"
+        },
+        "binding": {
+          "shape": "String",
+          "documentation": "<p>The SAML binding. Typically urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST.</p>"
+        },
+        "defaultValue": {
+          "shape": "Boolean"
+        }
+      }
+    },
+    "ConsumerList": {
+      "type": "list",
+      "member": {
+        "shape": "Consumer"
+      }
+    },
+    "TemplateInfo": {
+      "type": "structure",
+      "members": {
+        "sSOProtocol": {
+          "shape": "String"
+        },
+        "templateId": {
+          "shape": "TemplateId"
+        }
+      }
+    },
+    "UpdateApplicationInstanceDisplayDataRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        },
+        "displayName": {
+          "shape": "String"
+        },
+        "description": {
+          "shape": "String"
+        }
+      }
+    },
+    "UpdateApplicationInstanceServiceProviderConfigurationRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId",
+        "serviceProviderConfig"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        },
+        "serviceProviderConfig": {
+          "shape": "ServiceProviderConfig"
+        }
+      }
+    },
+    "ResponseAttributeSource": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "shape": "StringList",
+          "documentation": "<p>List of attribute source expressions, e.g. ${user:email}.</p>"
+        }
+      }
+    },
+    "ResponseAttributeMap": {
+      "type": "map",
+      "key": {
+        "shape": "String"
+      },
+      "value": {
+        "shape": "ResponseAttributeSource"
+      }
+    },
+    "ResponseConfig": {
+      "type": "structure",
+      "members": {
+        "subject": {
+          "shape": "ResponseAttributeSource",
+          "documentation": "<p>The SAML subject attribute source.</p>"
+        },
+        "properties": {
+          "shape": "ResponseAttributeMap",
+          "documentation": "<p>Map of attribute name to source. E.g. {\"Email\": {\"source\": [\"${user:email}\"]}}.</p>"
+        },
+        "ttl": {
+          "shape": "String",
+          "documentation": "<p>Session TTL in ISO 8601 duration format, e.g. PT1H.</p>"
+        }
+      }
+    },
+    "UpdateApplicationInstanceResponseConfigurationRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId",
+        "responseConfig"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        },
+        "responseConfig": {
+          "shape": "ResponseConfig"
+        }
+      }
+    },
+    "ResponseSchemaSubject": {
+      "type": "structure",
+      "members": {
+        "include": {
+          "shape": "String",
+          "documentation": "<p>Whether to include the subject. Typically REQUIRED.</p>"
+        },
+        "nameIdFormat": {
+          "shape": "String",
+          "documentation": "<p>SAML NameID format, e.g. urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress.</p>"
+        }
+      }
+    },
+    "ResponseSchemaProperty": {
+      "type": "structure",
+      "members": {
+        "attrNameFormat": {
+          "shape": "String",
+          "documentation": "<p>Attribute name format, e.g. urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified.</p>"
+        },
+        "include": {
+          "shape": "String",
+          "documentation": "<p>Whether to include the attribute. Typically YES.</p>"
+        }
+      }
+    },
+    "ResponseSchemaPropertyMap": {
+      "type": "map",
+      "key": {
+        "shape": "String"
+      },
+      "value": {
+        "shape": "ResponseSchemaProperty"
+      }
+    },
+    "ResponseSchemaConfig": {
+      "type": "structure",
+      "members": {
+        "subject": {
+          "shape": "ResponseSchemaSubject"
+        },
+        "properties": {
+          "shape": "ResponseSchemaPropertyMap"
+        }
+      }
+    },
+    "UpdateApplicationInstanceResponseSchemaConfigurationRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId",
+        "responseSchemaConfig"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        },
+        "responseSchemaConfig": {
+          "shape": "ResponseSchemaConfig"
+        }
+      }
+    },
+    "UpdateApplicationInstanceStatusRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId",
+        "status"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        },
+        "status": {
+          "shape": "StatusType"
+        }
+      }
+    },
+    "DeleteApplicationInstanceRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        }
+      }
+    },
+    "ListApplicationInstancesRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "ListApplicationInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "applicationInstances": {
+          "shape": "ApplicationInstanceList"
+        }
+      }
+    },
+    "ApplicationInstanceList": {
+      "type": "list",
+      "member": {
+        "shape": "ApplicationInstance"
+      }
+    },
+    "ListApplicationTemplatesRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "ListApplicationTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "applicationTemplates": {
+          "shape": "ApplicationTemplateList"
+        }
+      }
+    },
+    "ApplicationTemplate": {
+      "type": "structure",
+      "members": {
+        "templateId": {
+          "shape": "TemplateId"
+        },
+        "name": {
+          "shape": "String"
+        },
+        "sSOProtocol": {
+          "shape": "String"
+        }
+      }
+    },
+    "ApplicationTemplateList": {
+      "type": "list",
+      "member": {
+        "shape": "ApplicationTemplate"
+      }
+    },
+    "ListApplicationInstanceCertificatesRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        }
+      }
+    },
+    "ListApplicationInstanceCertificatesResponse": {
+      "type": "structure",
+      "members": {
+        "certificates": {
+          "shape": "CertificateList"
+        }
+      }
+    },
+    "Certificate": {
+      "type": "structure",
+      "members": {
+        "certificateId": {
+          "shape": "String"
+        },
+        "status": {
+          "shape": "String"
+        },
+        "expiryDate": {
+          "shape": "String"
+        },
+        "thumbprint": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "String"
+        }
+      }
+    },
+    "CertificateList": {
+      "type": "list",
+      "member": {
+        "shape": "Certificate"
+      }
+    },
+    "ListProfilesRequest": {
+      "type": "structure",
+      "required": [
+        "instanceId"
+      ],
+      "members": {
+        "instanceId": {
+          "shape": "InstanceId"
+        }
+      }
+    },
+    "ListProfilesResponse": {
+      "type": "structure",
+      "members": {
+        "applicationProfiles": {
+          "shape": "ProfileList"
+        }
+      }
+    },
+    "Profile": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "shape": "String"
+        },
+        "profileId": {
+          "shape": "ProfileId"
+        },
+        "status": {
+          "shape": "StatusType"
+        }
+      }
+    },
+    "ProfileList": {
+      "type": "list",
+      "member": {
+        "shape": "Profile"
+      }
+    },
+    "DeleteProfileRequest": {
+      "type": "structure",
+      "required": [
+        "profileId",
+        "instanceId"
+      ],
+      "members": {
+        "profileId": {
+          "shape": "ProfileId"
+        },
+        "instanceId": {
+          "shape": "InstanceId"
+        }
+      }
+    },
+    "DescribeRegisteredRegionsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "DescribeRegisteredRegionsResponse": {
+      "type": "structure",
+      "members": {
+        "regions": {
+          "shape": "RegionList"
+        }
+      }
+    },
+    "Region": {
+      "type": "structure",
+      "members": {
+        "regionName": {
+          "shape": "String"
+        },
+        "regionDisplayName": {
+          "shape": "String"
+        }
+      }
+    },
+    "RegionList": {
+      "type": "list",
+      "member": {
+        "shape": "Region"
+      }
+    },
+    "ListDirectoryAssociationsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "ListDirectoryAssociationsResponse": {
+      "type": "structure",
+      "members": {
+        "directoryAssociations": {
+          "shape": "DirectoryAssociationList"
+        }
+      }
+    },
+    "DirectoryAssociation": {
+      "type": "structure",
+      "members": {
+        "directoryId": {
+          "shape": "String"
+        },
+        "directoryType": {
+          "shape": "String"
+        },
+        "status": {
+          "shape": "String"
+        }
+      }
+    },
+    "DirectoryAssociationList": {
+      "type": "list",
+      "member": {
+        "shape": "DirectoryAssociation"
+      }
+    }
+  }
+}

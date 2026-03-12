@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# CDK compiled output & synth
+cdk/dist/
+cdk.out/
+
+# Frontend build output
+frontend/dist/
+
+# Deploy artifacts
+cdk-outputs.json
+

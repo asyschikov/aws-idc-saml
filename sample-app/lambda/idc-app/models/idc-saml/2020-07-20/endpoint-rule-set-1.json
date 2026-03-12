@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "parameters": {
+    "Region": {
+      "builtIn": "AWS::Region",
+      "required": true,
+      "documentation": "The AWS region used to dispatch the request.",
+      "type": "String"
+    },
+    "Endpoint": {
+      "builtIn": "SDK::Endpoint",
+      "required": false,
+      "documentation": "Override the endpoint used to send this request",
+      "type": "String"
+    }
+  },
+  "rules": [
+    {
+      "conditions": [
+        {
+          "fn": "isSet",
+          "argv": [
+            {
+              "ref": "Endpoint"
+            }
+          ]
+        }
+      ],
+      "endpoint": {
+        "url": {
+          "ref": "Endpoint"
+        },
+        "properties": {},
+        "headers": {}
+      },
+      "type": "endpoint"
+    },
+    {
+      "conditions": [
+        {
+          "fn": "isSet",
+          "argv": [
+            {
+              "ref": "Region"
+            }
+          ]
+        },
+        {
+          "fn": "aws.partition",
+          "argv": [
+            {
+              "ref": "Region"
+            }
+          ],
+          "assign": "PartitionResult"
+        }
+      ],
+      "endpoint": {
+        "url": "https://sso.{Region}.{PartitionResult#dnsSuffix}/control/",
+        "properties": {
+          "authSchemes": [
+            {
+              "name": "sigv4",
+              "signingName": "sso",
+              "signingRegion": "{Region}"
+            }
+          ]
+        },
+        "headers": {}
+      },
+      "type": "endpoint"
+    },
+    {
+      "conditions": [],
+      "error": "Region must be set to resolve the endpoint",
+      "type": "error"
+    }
+  ]
+}

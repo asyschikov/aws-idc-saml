@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# CDK compiled output & synth
+cdk/dist/
+cdk.out/
+
+# Frontend build output
+frontend/dist/
+
+# User config (created from template)
+cdk/lib/config.ts
+env.sh
+
+# Deploy output files
+idc-outputs.json
+app-outputs.json
